@@ -3,186 +3,417 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For My Favorite Person 💕</title>
+  <title>Happy Eighteen Mutia 💙</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg-color: #fff0f5;
-      --card-bg: #ffffff;
-      --primary: #ffb6c1;
-      --primary-hover: #ff94aa;
-      --text-color: #6c5ce7;
-      --accent: #ff7675;
+      --window-border: #38bdf8;   /* Sky Blue Outline */
+      --window-bg: #ffffff;
+      --header-bg: #bae6fd;       /* Pastel Blue Header */
+      --tab-active: #ffffff;
+      --tab-inactive: #7dd3fc;
+      --text-main: #0284c7;       /* Darker Soft Blue Text */
+      --text-dark: #334155;
     }
 
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
-      background-color: var(--bg-color);
+    }
+
+    /* Background Motif Kotak-Kotak Biru (Gingham Pattern) */
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #ffffff;
+      background-image: 
+        linear-gradient(90deg, rgba(186, 230, 253, 0.5) 50%, transparent 50%),
+        linear-gradient(rgba(186, 230, 253, 0.5) 50%, transparent 50%);
+      background-size: 40px 40px;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      padding: 20px 10px;
+      overflow-x: hidden;
     }
 
-    .container {
-      width: 90%;
-      max-width: 500px;
-      background: var(--card-bg);
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: 0 10px 25px rgba(255, 182, 193, 0.4);
-      border: 4px solid #ffe4e1;
-      text-align: center;
-    }
-
-    h1 {
-      color: var(--accent);
-      font-size: 1.6rem;
-      margin-bottom: 20px;
-    }
-
-    /* Tab Buttons */
-    .tab-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .tab-btn {
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      padding: 10px 20px;
+    /* Browser Window Container */
+    .browser-window {
+      width: 100%;
+      max-width: 520px;
+      background-color: var(--window-bg);
+      border: 4px solid var(--window-border);
       border-radius: 20px;
-      font-weight: bold;
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.3);
+      overflow: hidden;
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Window Header Bar */
+    .window-header {
+      background-color: var(--header-bg);
+      padding: 12px 14px 0 14px;
+      border-bottom: 3px solid var(--window-border);
+    }
+
+    .window-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .window-controls {
+      display: flex;
+      gap: 6px;
+    }
+
+    .control-btn {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid #0284c7;
+      display: inline-block;
+    }
+
+    .control-btn.close { background-color: #f87171; }
+    .control-btn.min { background-color: #fbbf24; }
+    .control-btn.max { background-color: #4ade80; }
+
+    /* Browser Tabs */
+    .tab-container {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tab-item {
+      padding: 8px 18px;
+      background-color: var(--tab-inactive);
+      border: 3px solid var(--window-border);
+      border-bottom: none;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.9rem;
+      color: #0369a1;
       cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 0.95rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      font-weight: 600;
+      transition: all 0.2s ease;
+      user-select: none;
     }
 
-    .tab-btn:hover, .tab-btn.active {
-      background-color: var(--primary-hover);
+    .tab-item.active {
+      background-color: var(--tab-active);
+      color: var(--text-main);
+      transform: translateY(3px);
+    }
+
+    /* Search/URL Bar */
+    .search-bar-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #f0f9ff;
+      padding: 6px 12px;
+      border-top: 2px solid var(--window-border);
+      border-bottom: 2px solid var(--window-border);
+      font-size: 0.85rem;
+      color: #0284c7;
+    }
+
+    .nav-icons {
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .url-input {
+      background: #ffffff;
+      border: 2px solid var(--window-border);
+      border-radius: 12px;
+      padding: 4px 12px;
+      width: 100%;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      color: #0369a1;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    /* Window Body */
+    .window-body {
+      padding: 24px 20px;
+      background-color: #f0f9ff;
+      min-height: 380px;
+    }
+
+    .main-title {
+      font-family: 'Fredoka', sans-serif;
+      color: var(--text-main);
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 18px;
+      text-shadow: 2px 2px 0px #bae6fd;
+    }
+
+    /* Pages Container */
+    .page-section {
+      display: none;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    /* Welcome Page / Tampilan Awal */
+    .welcome-box {
+      text-align: center;
+      padding: 30px 10px;
+    }
+
+    .welcome-emoji {
+      font-size: 4rem;
+      margin-bottom: 16px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .welcome-text {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    /* Tombol Next */
+    .btn-next {
+      background-color: var(--window-border);
+      color: white;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.1rem;
+      padding: 12px 32px;
+      border: 3px solid #0284c7;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 0px #0284c7;
+      transition: all 0.2s ease;
+    }
+
+    .btn-next:hover {
       transform: translateY(-2px);
+      box-shadow: 0 6px 0px #0284c7;
+      background-color: #0284c7;
     }
 
-    /* Content Area */
+    .btn-next:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0px #0284c7;
+    }
+
+    /* Content Area inside Tabs */
     .tab-content {
       display: none;
-      animation: fadeIn 0.5s ease;
     }
 
     .tab-content.active {
       display: block;
     }
 
-    /* Menu 1: Surat Cinta */
+    /* Longtext Box */
     .letter-box {
-      background: #fff5f7;
+      background: #ffffff;
+      border: 3px solid var(--window-border);
       border-radius: 16px;
       padding: 20px;
-      color: #555;
+      color: var(--text-dark);
       line-height: 1.7;
-      text-align: left;
       font-size: 0.95rem;
-      max-height: 300px;
+      font-weight: 500;
+      max-height: 280px;
       overflow-y: auto;
-      border: 2px dashed var(--primary);
+      box-shadow: 3px 3px 0px var(--header-bg);
     }
 
-    /* Menu 2: Galeri Foto */
+    .letter-box p {
+      margin-bottom: 12px;
+    }
+
+    .letter-box::-webkit-scrollbar { width: 8px; }
+    .letter-box::-webkit-scrollbar-thumb {
+      background: var(--tab-inactive);
+      border-radius: 10px;
+    }
+
+    /* Photo Gallery */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 14px;
     }
 
-    .gallery-card {
-      background: #fff;
-      border-radius: 12px;
+    .photo-card {
+      background: #ffffff;
+      border: 3px solid var(--window-border);
+      border-radius: 14px;
       padding: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      border: 2px solid #ffe4e1;
+      text-align: center;
+      box-shadow: 3px 3px 0px var(--header-bg);
     }
 
-    .gallery-card img {
+    .photo-card img {
       width: 100%;
-      height: 120px;
+      height: 130px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 10px;
+      border: 2px solid #e0f2fe;
     }
 
-    .gallery-card p {
-      margin: 6px 0 2px;
-      font-size: 0.8rem;
-      color: #666;
+    .photo-card p {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #0284c7;
+      font-family: 'Fredoka', sans-serif;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
+      from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    .footer-heart {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 0.85rem;
+      color: #38bdf8;
+      font-weight: 700;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Special for You 💖</h1>
+  <!-- Browser Window -->
+  <div class="browser-window">
+    
+    <!-- Top Bar Header -->
+    <div class="window-header">
+      <div class="window-top-bar">
+        <div class="window-controls">
+          <span class="control-btn close"></span>
+          <span class="control-btn min"></span>
+          <span class="control-btn max"></span>
+        </div>
+        <div style="font-family: 'Fredoka', sans-serif; font-size: 0.8rem; color: #0284c7;">mutia-space.exe</div>
+      </div>
 
-    <!-- Tombol Menu -->
-    <div class="tab-buttons">
-      <button class="tab-btn active" onclick="openTab('surat')">💌 Surat buat Kamu</button>
-      <button class="tab-btn" onclick="openTab('galeri')">📸 Momen Kita</button>
-    </div>
-
-    <!-- Menu 1: Longtext / Surat -->
-    <div id="surat" class="tab-content active">
-      <div class="letter-box">
-        Hai sayang! 🌸<br><br>
-        Makasih ya udah selalu ada dan bikin hari-hariku jadi lebih berwarna. Aku cuma mau ngasih tau kalau kamu itu berharga banget buat aku. Semoga web kecil ini bisa bikin kamu senyum hari ini!<br><br>
-        <i>(Tulis pesan panjangmu yang romantis di sini yaa...)</i>
+      <!-- Tabs Menu (Hidden Initially) -->
+      <div id="tabMenuHeader" class="tab-container" style="display: none;">
+        <div class="tab-item active" onclick="switchTab('surat', this)">💌 Surat Cinta</div>
+        <div class="tab-item" onclick="switchTab('galeri', this)">📸 Momen Kita</div>
       </div>
     </div>
 
-    <!-- Menu 2: Galeri Foto -->
-    <div id="galeri" class="tab-content">
-      <div class="gallery-grid">
-        <div class="gallery-card">
-          <img src="https://picsum.photos/300/300?random=1" alt="Foto 1">
-          <p>Kencan Pertama ✨</p>
-        </div>
-        <div class="gallery-card">
-          <img src="https://picsum.photos/300/300?random=2" alt="Foto 2">
-          <p>Jalan-jalan 🍦</p>
-        </div>
-        <div class="gallery-card">
-          <img src="https://picsum.photos/300/300?random=3" alt="Foto 3">
-          <p>Foto Random 🤪</p>
-        </div>
-        <div class="gallery-card">
-          <img src="https://picsum.photos/300/300?random=4" alt="Foto 4">
-          <p>Favorit Aku 💗</p>
+    <!-- URL Navigation Bar -->
+    <div class="search-bar-container">
+      <span class="nav-icons">← → ↻</span>
+      <input type="text" class="url-input" value="https://happy-18th-mutia.love 💖" readonly>
+    </div>
+
+    <!-- Window Body -->
+    <div class="window-body">
+      
+      <!-- HALAMAN 1: WELCOME & TOMBOL NEXT -->
+      <div id="welcomePage" class="page-section active">
+        <div class="welcome-box">
+          <div class="welcome-emoji">🎁💙</div>
+          <h1 class="main-title">Happy Eighteen Mutia 💙</h1>
+          <p class="welcome-text">Ada pesan spesial kecil nih buat kamu.<br>Klik tombol di bawah buat buka yaa!</p>
+          <button class="btn-next" onclick="goToMainPage()">Next ➡️</button>
         </div>
       </div>
+
+      <!-- HALAMAN 2: UTAMA (MENAMPILKAN 2 MENU TAB) -->
+      <div id="mainPage" class="page-section">
+        
+        <!-- Tab 1: Surat / Longtext -->
+        <div id="surat" class="tab-content active">
+          <div class="letter-box">
+            <p>Hai Mutia sayang! 💙</p>
+            <p>Selamat ulang tahun yang ke-18 ya! 🎉🎂</p>
+            <p>Di usiamu yang baru ini, aku cuma mau kasih tau kalau kamu itu sosok yang luar biasa banget buat aku. Makasih ya udah selalu bawa keceriaan, senyuman manis, dan hangatnya perhatian di setiap hariku.</p>
+            <p>Semoga di umur 18 tahun ini, semua yang kamu cita-citakan bisa tercapai, selalu diberikan kesehatan, kebahagiaan yang melimpah, dan makin sayang sama orang-orang sekitar (termasuk aku hehe 🙈).</p>
+            <p>Aku buat website sederhana bertema biru ini khusus buat kamu, semoga bisa bikin kamu senyum hari ini yaa! I love you so much! 💙✨</p>
+          </div>
+        </div>
+
+        <!-- Tab 2: Galeri Foto -->
+        <div id="galeri" class="tab-content">
+          <div class="gallery-grid">
+            
+            <div class="photo-card">
+              <img src="https://picsum.photos/300/300?random=11" alt="Foto 1">
+              <p>Senyum Favorit 🌸</p>
+            </div>
+
+            <div class="photo-card">
+              <img src="https://picsum.photos/300/300?random=22" alt="Foto 2">
+              <p>Jalan-Jalan 🍦</p>
+            </div>
+
+            <div class="photo-card">
+              <img src="https://picsum.photos/300/300?random=33" alt="Foto 3">
+              <p>Momen Lucu 🤪</p>
+            </div>
+
+            <div class="photo-card">
+              <img src="https://picsum.photos/300/300?random=44" alt="Foto 4">
+              <p>Always Together 💙</p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="footer-heart">Made with 💙 specially for Mutia</div>
+      </div>
+
     </div>
+
   </div>
 
   <script>
-    function openTab(tabId) {
-      // Sembunyikan semua tab
+    // Fungsi saat tombol Next diklik
+    function goToMainPage() {
+      document.getElementById('welcomePage').classList.remove('active');
+      document.getElementById('mainPage').classList.add('active');
+      document.getElementById('tabMenuHeader').style.display = 'flex';
+    }
+
+    // Fungsi perpindahan Tab Menu
+    function switchTab(tabId, element) {
       const contents = document.querySelectorAll('.tab-content');
       contents.forEach(content => content.classList.remove('active'));
 
-      // Nonaktifkan semua tombol
-      const buttons = document.querySelectorAll('.tab-btn');
-      buttons.forEach(button => button.classList.remove('active'));
+      const tabs = document.querySelectorAll('.tab-item');
+      tabs.forEach(tab => tab.classList.remove('active'));
 
-      // Tampilkan tab yang dipilih & aktifkan tombolnya
       document.getElementById(tabId).classList.add('active');
-      event.currentTarget.classList.add('active');
+      element.classList.add('active');
     }
   </script>
+
 </body>
 </html>
