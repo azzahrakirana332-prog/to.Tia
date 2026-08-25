@@ -399,6 +399,85 @@
       animation: popUpAnim 0.4s ease;
     }
 
+    /* Style Pop-Up Make a Wish / Tiup Lilin */
+    .cake-img-box {
+      width: 140px;
+      height: auto;
+      margin: 0 auto 10px auto;
+    }
+
+    .cake-img-box img {
+      width: 100%;
+      height: auto;
+    }
+
+    .bubble-container {
+      position: relative;
+      width: 100%;
+      max-width: 280px;
+      margin: 10px auto;
+    }
+
+    .bubble-bg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .wish-input {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      height: 60%;
+      border: none;
+      background: transparent;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #5c6b73;
+      text-align: center;
+      outline: none;
+      resize: none;
+    }
+
+    /* Style Opsi Kado (Gift Boxes) */
+    .gift-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .gift-card {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      width: 80px;
+    }
+
+    .gift-card:hover {
+      transform: scale(1.1);
+    }
+
+    .gift-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    #gacoanMessage {
+      display: none;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.5rem;
+      color: #0284c7;
+      padding: 20px 10px;
+      animation: popUpAnim 0.4s ease;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
@@ -506,6 +585,7 @@
   <!-- RETRO QUESTION POPUP -->
   <div id="popupOverlay" class="popup-overlay">
     <div class="popup-box">
+      <!-- Stage 1: Pertanyaan Kangen -->
       <div id="questionContent">
         <h2 class="popup-title">kamu kgn aku gk? 🥺💙</h2>
         <div class="popup-btns">
@@ -514,10 +594,51 @@
         </div>
       </div>
 
+      <!-- Stage 2: Pesan I Miss You -->
       <div id="finalMessage">
         <div style="font-size: 3rem; margin-bottom: 10px;">🥰😍</div>
         <p>i miss u too mutiaaaaaaaa</p>
       </div>
+
+      <!-- Stage 3: Pop-Up Make a Wish & Tiup Lilin -->
+      <div id="cakeStage" style="display: none;">
+        <div class="cake-img-box">
+          <img id="cakeImage" src="kue_nyala.png" alt="Kue Ultah">
+        </div>
+
+        <div class="bubble-container">
+          <img src="bubble.png" class="bubble-bg" alt="Bubble Text">
+          <textarea class="wish-input" placeholder="Make a wish..."></textarea>
+        </div>
+
+        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 10px;">
+          <button id="blowBtn" class="btn-pop" onclick="blowCandle()">Tiup Lilin 🎂</button>
+          <button id="nextGiftBtn" class="btn-pop" style="display: none;" onclick="goToGiftStage()">➡️ Next</button>
+        </div>
+      </div>
+
+      <!-- Stage 4: Pilih Kotak Kado -->
+      <div id="giftStage" style="display: none;">
+        <h2 class="popup-title">Pilih kado kamu! 🎁✨</h2>
+        <div class="gift-container">
+          <button class="gift-card" onclick="openGift()">
+            <img src="kado1.png" alt="Kado 1">
+          </button>
+          <button class="gift-card" onclick="openGift()">
+            <img src="kado2.png" alt="Kado 2">
+          </button>
+          <button class="gift-card" onclick="openGift()">
+            <img src="kado3.png" alt="Kado 3">
+          </button>
+        </div>
+      </div>
+
+      <!-- Stage 5: Pop Up Pesan Traktir Gacoan -->
+      <div id="gacoanMessage">
+        <div style="font-size: 3rem; margin-bottom: 10px;">🍜🌶️</div>
+        <p>traktir gacoan!</p>
+      </div>
+
     </div>
   </div>
 
@@ -610,6 +731,39 @@
     function answerYes() {
       document.getElementById('questionContent').style.display = 'none';
       document.getElementById('finalMessage').style.display = 'block';
+
+      // Jeda 3 Detik Sebelum Menampilkan Pop-Up Kue
+      setTimeout(() => {
+        document.getElementById('finalMessage').style.display = 'none';
+        document.getElementById('cakeStage').style.display = 'block';
+      }, 3000);
+    }
+
+    // Fungsi Tiup Lilin
+    function blowCandle() {
+      // Mengubah gambar kue menjadi lilin mati
+      document.getElementById('cakeImage').src = 'kue_mati.png';
+      
+      // Mengubah teks tombol tiup lilin & memunculkan tombol Next
+      const blowBtn = document.getElementById('blowBtn');
+      blowBtn.innerText = 'Yeay! ✨';
+      blowBtn.style.background = '#bae6fd';
+      blowBtn.disabled = true;
+
+      // Tampilkan tombol next setelah tiup lilin
+      document.getElementById('nextGiftBtn').style.display = 'inline-block';
+    }
+
+    // Navigasi Ke Tahap Pilih Kado
+    function goToGiftStage() {
+      document.getElementById('cakeStage').style.display = 'none';
+      document.getElementById('giftStage').style.display = 'block';
+    }
+
+    // Pop-Up Saat Kado Diklik
+    function openGift() {
+      document.getElementById('giftStage').style.display = 'none';
+      document.getElementById('gacoanMessage').style.display = 'block';
     }
   </script>
 </body>
