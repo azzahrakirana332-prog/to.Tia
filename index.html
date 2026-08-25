@@ -1,5 +1,4 @@
-
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -27,7 +26,26 @@
     }
 
     body {
-      
+      <!-- Background Music (Auto / Manual Play) -->
+<audio id="myAudio" loop>
+  <source src="lagu.mp3" type="audio/mp3">
+</audio>
+
+<!-- Tombol Musik Melayang Imut di Pojok Kanan Atas -->
+<button class="music-btn" onclick="toggleMusic()" id="musicBtn">🎵 Play Music</button>
+      font-family: 'Quicksand', sans-serif;
+      background-color: #ffffff;
+      background-image: 
+        linear-gradient(90deg, rgba(186, 230, 253, 0.5) 50%, transparent 50%),
+        linear-gradient(rgba(186, 230, 253, 0.5) 50%, transparent 50%);
+      background-size: 40px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px 10px;
+      overflow-x: hidden;
+    }
 
     /* Video Overlay Intro */
     #videoContainer {
@@ -365,9 +383,31 @@
     }
   </style>
 </head>
-  <script src="script.js"></script>
 <body>
-  
+  /* Tombol Pengontrol Musik Melayang */
+.music-btn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background-color: #ffffff;
+  color: #0284c7;
+  border: 3px solid #38bdf8;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+  transition: all 0.2s ease;
+}
+
+.music-btn:hover {
+  transform: scale(1.05);
+  background-color: #bae6fd;
+}
+
   <!-- Video Intro Overlay -->
   <div id="videoContainer">
     <div id="videoContainer">
@@ -380,7 +420,6 @@
 
   <button class="skip-btn" onclick="closeVideo()">✌️</button>
     </div>
-
 
   <!-- Main Browser Window -->
   <div class="browser-window" id="mainWindow">
@@ -479,7 +518,21 @@
     </div>
   </div>
     <script>
-    
+    const audio = document.getElementById("myAudio");
+    const musicBtn = document.getElementById("musicBtn");
+
+    function toggleMusic() {
+      if (audio.paused) {
+        audio.play();
+        musicBtn.innerHTML = "⏸️ Pause Music";
+        musicBtn.style.backgroundColor = "#bae6fd";
+      } else {
+        audio.pause();
+        musicBtn.innerHTML = "🎵 Play Music";
+        musicBtn.style.backgroundColor = "#ffffff";
+      }
+    }
+
   <script>
     // Video Handler
     function closeVideo() {
@@ -533,9 +586,9 @@
       document.getElementById('questionContent').style.display = 'none';
       document.getElementById('finalMessage').style.display = 'block';
     }
+      
   </script>
-    
-<script>
+    <script>
   // Ambil elemen video dan elemen konten web
   const introVideo = document.querySelector('video');
   const videoWrapper = introVideo.parentElement; // Container video
@@ -553,11 +606,10 @@
     
     // Tampilkan konten utama website
     if (mainContent) {
-      mainContent.style.display = 'none';
+      mainContent.style.display = 'block';
     }
   });
-</script>
-    
+    </script>
+
 </body>
 </html>
-  
