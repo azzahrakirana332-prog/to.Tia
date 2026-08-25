@@ -380,14 +380,16 @@
 
   <!-- Video Intro Overlay -->
   <div id="videoContainer">
-    <!-- Ganti src dengan link video kamu jika diupload ke GitHub -->
-    <video id="introVideo" autoplay muted playsinline onended="closeVideo()">
-      <source src="video3.mp4" type="video/mp4">
-      Browser kamu tidak mendukung video.
-    </video>
-    <button class="skip-btn" onclick="closeVideo()">Lanjut ke Web ➡️</button>
-  </div>
+  <!-- Pakai tag <video> kalau file kamu .mp4 -->
+  <video id="introVideo" autoplay muted playsinline onended="closeVideo()">
+    <source src="introVideo.mp4" type="video/mp4">
+  </video>
 
+  <!-- <img src="intro.gif" style="max-width: 90%; border-radius: 12px; margin-bottom: 15px;"> -->
+
+  <button class="skip-btn" onclick="closeVideo()"➡️</button>
+  </div>
+    
   <!-- Main Browser Window -->
   <div class="browser-window" id="mainWindow">
     
@@ -538,8 +540,29 @@
       document.getElementById('questionContent').style.display = 'none';
       document.getElementById('finalMessage').style.display = 'block';
     }
-  </script>
 
+<script>
+  // Ambil elemen video dan elemen konten web
+  const introVideo = document.querySelector('video');
+  const videoWrapper = introVideo.parentElement; // Container video
+  const mainContent = document.querySelector('.main-content') || document.body.children[1];
+
+  // 1. Agar video bersuara (diaktifkan saat pengguna pertama kali mengetuk layar)
+  document.addEventListener('click', () => {
+    introVideo.muted = false;
+  }, { once: true });
+
+  // 2. Fungsi otomatis ketika video SELESAI diputar
+  introVideo.addEventListener('ended', () => {
+    // Sembunyikan layar/container video
+    videoWrapper.style.display = 'none';
+    
+    // Tampilkan konten utama website
+    if (mainContent) {
+      mainContent.style.display = 'block';
+    }
+  });
+</script>
 </body>
 </html>
   
