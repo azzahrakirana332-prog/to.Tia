@@ -26,26 +26,7 @@
     }
 
     body {
-      <!-- Background Music (Auto / Manual Play) -->
-<audio id="myAudio" loop>
-  <source src="lagu.mp3" type="audio/mp3">
-</audio>
-
-<!-- Tombol Musik Melayang Imut di Pojok Kanan Atas -->
-<button class="music-btn" onclick="toggleMusic()" id="musicBtn">🎵 Play Music</button>
-      font-family: 'Quicksand', sans-serif;
-      background-color: #ffffff;
-      background-image: 
-        linear-gradient(90deg, rgba(186, 230, 253, 0.5) 50%, transparent 50%),
-        linear-gradient(rgba(186, 230, 253, 0.5) 50%, transparent 50%);
-      background-size: 40px 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px 10px;
-      overflow-x: hidden;
-    }
+      
 
     /* Video Overlay Intro */
     #videoContainer {
@@ -383,7 +364,28 @@
     }
   </style>
 </head>
+  <script src="script.js"></script>
 <body>
+     <-- Background Music (Auto / Manual Play) -->
+<audio id="myAudio" loop>
+  <source src="lagu.mp3" type="audio/mp3">
+</audio>
+
+<!-- Tombol Musik Melayang Imut di Pojok Kanan Atas -->
+<button class="music-btn" onclick="toggleMusic()" id="musicBtn">🎵 Play Music</button>
+      font-family: 'Quicksand', sans-serif;
+      background-color: #ffffff;
+      background-image: 
+        linear-gradient(90deg, rgba(186, 230, 253, 0.5) 50%, transparent 50%),
+        linear-gradient(rgba(186, 230, 253, 0.5) 50%, transparent 50%);
+      background-size: 40px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px 10px;
+      overflow-x: hidden;
+    }
   /* Tombol Pengontrol Musik Melayang */
 .music-btn {
   position: fixed;
