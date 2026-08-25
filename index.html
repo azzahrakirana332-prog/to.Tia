@@ -366,24 +366,9 @@
 </head>
   <script src="script.js"></script>
 <body>
-  const playBtn = document.getElementById('play-btn');
-  const overlayStart = document.getElementById('overlay-start');
-  const videoContainer = document.getElementById('video-container');
-  const video = document.getElementById('myVideo');
-  const mainContent = document.getElementById('main-content');
+  
 
-playBtn.addEventListener('click', () => {
-  overlayStart.classList.add('hidden');
-  videoContainer.classList.remove('hidden');
-  video.muted = false;
-  video.play();
-});
-
-video.addEventListener('ended', () => {
-  videoContainer.classList.add('hidden');
-  mainContent.classList.remove('hidden');
-});
-     <-- Background Music (Auto / Manual Play) -->
+    <-- Background Music (Auto / Manual Play) -->
 <audio id="myAudio" loop>
   <source src="lagu.mp3" type="audio/mp3">
 </audio>
@@ -610,7 +595,30 @@ video.addEventListener('ended', () => {
       document.getElementById('finalMessage').style.display = 'block';
     }
   </script>
+    
+<script>
+  // Ambil elemen video dan elemen konten web
+  const introVideo = document.querySelector('video');
+  const videoWrapper = introVideo.parentElement; // Container video
+  const mainContent = document.querySelector('.main-content') || document.body.children[1];
 
+  // 1. Agar video bersuara (diaktifkan saat pengguna pertama kali mengetuk layar)
+  document.addEventListener('click', () => {
+    introVideo.muted = false;
+  }, { once: true });
+
+  // 2. Fungsi otomatis ketika video SELESAI diputar
+  introVideo.addEventListener('ended', () => {
+    // Sembunyikan layar/container video
+    videoWrapper.style.display = 'none';
+    
+    // Tampilkan konten utama website
+    if (mainContent) {
+      mainContent.style.display = 'block';
+    }
+  });
+</script>
+    
 </body>
 </html>
   
