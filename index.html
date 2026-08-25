@@ -26,6 +26,13 @@
     }
 
     body {
+      <!-- Background Music (Auto / Manual Play) -->
+<audio id="myAudio" loop>
+  <source src="lagu.mp3" type="audio/mp3">
+</audio>
+
+<!-- Tombol Musik Melayang Imut di Pojok Kanan Atas -->
+<button class="music-btn" onclick="toggleMusic()" id="musicBtn">🎵 Play Music</button>
       font-family: 'Quicksand', sans-serif;
       background-color: #ffffff;
       background-image: 
@@ -377,16 +384,42 @@
   </style>
 </head>
 <body>
+  /* Tombol Pengontrol Musik Melayang */
+.music-btn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background-color: #ffffff;
+  color: #0284c7;
+  border: 3px solid #38bdf8;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+  transition: all 0.2s ease;
+}
+
+.music-btn:hover {
+  transform: scale(1.05);
+  background-color: #bae6fd;
+}
 
   <!-- Video Intro Overlay -->
   <div id="videoContainer">
-    <!-- Ganti src dengan link video kamu jika diupload ke GitHub -->
-    <video id="introVideo" autoplay muted playsinline onended="closeVideo()">
-      <source src="video3.mp4" type="video/mp4">
-      Browser kamu tidak mendukung video.
-    </video>
-    <button class="skip-btn" onclick="closeVideo()">Lanjut ke Web ➡️</button>
-  </div>
+    <div id="videoContainer">
+  <!-- Pakai tag <video> kalau file kamu .mp4 -->
+  <video id="introVideo" autoplay muted playsinline onended="closeVideo()">
+    <source src="introVideo.mp4" type="video/mp4">
+  </video>
+  
+  <!-- <img src="intro.gif" style="max-width: 90%; border-radius: 12px; margin-bottom: 15px;"> -->
+
+  <button class="skip-btn" onclick="closeVideo()">Lanjut ke Web ➡️</button>
+    </div>
 
   <!-- Main Browser Window -->
   <div class="browser-window" id="mainWindow">
@@ -418,10 +451,10 @@
       <div id="welcomePage" class="page-section active">
         <div class="welcome-box">
           <!-- Gambar Karakter Ultah Imut -->
-          <img src="https://i.ibb.co/68v8L54/White-Hamster-in-a-birthday-party.jpg" alt="Birthday Character" class="bday-char">
+          <img src="hamster.jpg" alt="Birthday Character" class="bday-char">
           <h1 class="main-title">Happy Eighteen Mutia </h1>
-          <p class="welcome-text">next aja anjg, mls ngetik.<br>klik lah</p>
-          <button class="btn-retro" onclick="goToMainPage()">Next ➡️</button>
+          <p class="welcome-text">next aja anjg, mls ngetik.<br>eh lagunya putrer dulu dong</p>
+          <button class="btn-retro" onclick="goToMainPage()"> ➡️</button>
         </div>
       </div>
 
@@ -459,8 +492,8 @@
 
         <!-- Navigation Buttons inside Main Page -->
         <div class="btn-group">
-          <button class="btn-retro" onclick="goBackToWelcome()">⬅️ Back</button>
-          <button class="btn-retro" onclick="openQuestionPopup()">Next ➡️</button>
+          <button class="btn-retro" onclick="goBackToWelcome()">⬅️ </button>
+          <button class="btn-retro" onclick="openQuestionPopup()"> ➡️</button>
         </div>
       </div>
 
@@ -484,6 +517,21 @@
       </div>
     </div>
   </div>
+    <script>
+    const audio = document.getElementById("myAudio");
+    const musicBtn = document.getElementById("musicBtn");
+
+    function toggleMusic() {
+      if (audio.paused) {
+        audio.play();
+        musicBtn.innerHTML = "⏸️ Pause Music";
+        musicBtn.style.backgroundColor = "#bae6fd";
+      } else {
+        audio.pause();
+        musicBtn.innerHTML = "🎵 Play Music";
+        musicBtn.style.backgroundColor = "#ffffff";
+      }
+    }
 
   <script>
     // Video Handler
