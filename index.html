@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -41,31 +40,7 @@
       overflow-x: hidden;
     }
 
-    /* Tombol Musik Melayang */
-    .music-btn {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background-color: #ffffff;
-      color: #0284c7;
-      border: 3px solid #38bdf8;
-      border-radius: 20px;
-      padding: 8px 16px;
-      font-family: 'Fredoka', sans-serif;
-      font-size: 0.85rem;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      z-index: 1000;
-      transition: all 0.2s ease;
-    }
-
-    .music-btn:hover {
-      transform: scale(1.05);
-      background-color: #bae6fd;
-    }
-
-    /* Video Overlay Intro */
+    /* Video Intro Overlay */
     #videoContainer {
       position: fixed;
       top: 0;
@@ -98,11 +73,24 @@
       cursor: pointer;
       font-family: 'Fredoka', sans-serif;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      transition: transform 0.2s ease;
     }
 
-    .play-start-btn:hover {
-      transform: scale(1.08);
+    /* Tombol Musik Melayang */
+    .music-btn {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background-color: #ffffff;
+      color: #0284c7;
+      border: 3px solid #38bdf8;
+      border-radius: 20px;
+      padding: 8px 16px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.85rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
     }
 
     /* Main Window */
@@ -222,34 +210,11 @@
       text-shadow: 2px 2px 0px #bae6fd;
     }
 
-    .page-section {
-      display: none;
-      animation: fadeIn 0.4s ease-in-out;
-    }
-
-    .page-section.active { display: block; }
-
     .bday-char {
       width: 140px;
       height: auto;
       margin-bottom: 12px;
       border-radius: 15px;
-      animation: floatChar 3s ease-in-out infinite;
-    }
-
-    @keyframes floatChar {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-8px) rotate(2deg); }
-    }
-
-    .welcome-box { text-align: center; padding: 10px 10px; }
-
-    .welcome-text {
-      font-size: 1.05rem;
-      color: var(--text-dark);
-      margin-bottom: 20px;
-      line-height: 1.6;
-      font-weight: 600;
     }
 
     .btn-group {
@@ -269,56 +234,6 @@
       border-radius: 18px;
       cursor: pointer;
       box-shadow: 0 4px 0px #0284c7;
-      transition: all 0.2s ease;
-    }
-
-    .btn-retro:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 0px #0284c7;
-    }
-
-    .letter-box {
-      background: #ffffff;
-      border: 3px solid var(--window-border);
-      border-radius: 16px;
-      padding: 20px;
-      color: var(--text-dark);
-      line-height: 1.7;
-      font-size: 0.95rem;
-      font-weight: 500;
-      max-height: 250px;
-      overflow-y: auto;
-      box-shadow: 3px 3px 0px var(--header-bg);
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .photo-card {
-      background: #ffffff;
-      border: 3px solid var(--window-border);
-      border-radius: 14px;
-      padding: 8px;
-      text-align: center;
-      box-shadow: 3px 3px 0px var(--header-bg);
-    }
-
-    .photo-card img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .photo-card p {
-      margin-top: 6px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #0284c7;
-      font-family: 'Fredoka', sans-serif;
     }
 
     /* POPUP STYLES */
@@ -328,12 +243,12 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(6px);
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 100;
+      z-index: 1000;
     }
 
     .popup-box {
@@ -345,12 +260,6 @@
       width: 85%;
       max-width: 380px;
       text-align: center;
-      animation: popUpAnim 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    @keyframes popUpAnim {
-      from { transform: scale(0.5); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
     }
 
     .popup-title {
@@ -390,13 +299,6 @@
       font-family: 'Fredoka', sans-serif;
       font-size: 1.4rem;
       color: #0284c7;
-      padding: 10px;
-      animation: popUpAnim 0.4s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -407,7 +309,7 @@
     <source src="lagu.mp3" type="audio/mp3">
   </audio>
 
-  <!-- Tombol Musik Melayang -->
+  <!-- Tombol Musik -->
   <button class="music-btn" onclick="toggleMusic()" id="musicBtn">🎵 Play Music</button>
 
   <!-- Video Intro Overlay -->
@@ -415,13 +317,11 @@
     <video id="introVideo" playsinline muted autoplay onended="closeVideo()">
       <source src="video3.mp4" type="video/mp4">
     </video>
-    <!-- Tombol ini berfungsi mengaktifkan suara & membuka web -->
-    <button class="play-start-btn" onclick="closeVideo()">🔊 Buka Web & Bunyikan Suara ➡️</button>
+    <button class="play-start-btn" onclick="closeVideo()">Lanjut ke Web ➡️</button>
   </div>
 
   <!-- Main Browser Window -->
-  <div class="browser-window" id="mainWindow">
-    
+  <div class="browser-window">
     <div class="window-header">
       <div class="window-top-bar">
         <div class="window-controls">
@@ -432,7 +332,7 @@
         <div style="font-family: 'Fredoka', sans-serif; font-size: 0.8rem; color: #0284c7;">mutia-space.exe</div>
       </div>
 
-      <div id="tabMenuHeader" class="tab-container" style="display: none;">
+      <div class="tab-container">
         <div class="tab-item active" onclick="switchTab('surat', this)">💌 Surat Cinta</div>
         <div class="tab-item" onclick="switchTab('galeri', this)">📸 Momen Kita</div>
       </div>
@@ -444,61 +344,31 @@
     </div>
 
     <div class="window-body">
-      
-      <!-- PAGE 1: Welcome -->
-      <div id="welcomePage" class="page-section active">
-        <div class="welcome-box">
-          <img src="hamster.jpg" alt="Birthday Character" class="bday-char" onerror="this.src='https://picsum.photos/150/150'">
-          <h1 class="main-title">Happy Eighteen Mutia 💙</h1>
-          <p class="welcome-text">Ada sesuatu spesial yang dibuat khusus buat kamu nih.<br>Yuk klik Next!</p>
-          <button class="btn-retro" onclick="goToMainPage()">Next ➡️</button>
+      <!-- KONTEN ASLI KAMU DARI WEB -->
+      <div id="surat" class="tab-content" style="display: block;">
+        <!-- Isi surat sesuai file awal kamu -->
+        <h1 class="main-title">Happy Eighteen Mutia 💙</h1>
+        <div style="text-align: center; margin-bottom: 15px;">
+          <img src="hamster.jpg" alt="Mutia" class="bday-char" onerror="this.src='https://picsum.photos/140/140'">
+        </div>
+        <div style="background: white; padding: 15px; border-radius: 12px; border: 2px solid var(--window-border); line-height: 1.6;">
+          <p>Selamat Ulang Tahun yang ke-18 Mutia! ✨</p>
+          <p>Semoga di umur baru ini makin bahagia, makin sehat, dan semua impianmu tercapai.</p>
         </div>
       </div>
 
-      <!-- PAGE 2: Main Content (Tabs) -->
-      <div id="mainPage" class="page-section">
-        
-        <div id="surat" class="tab-content active">
-          <div class="letter-box">
-            <p>Hai Mutia sayang! 💙</p>
-            <p>Selamat ulang tahun yang ke-18 ya! 🎉🎂</p>
-            <p>Di usiamu yang baru ini, aku cuma mau kasih tau kalau kamu itu sosok yang luar biasa banget buat aku. Makasih ya udah selalu bawa keceriaan, senyuman manis, dan hangatnya perhatian di setiap hariku.</p>
-            <p>Semoga di umur 18 tahun ini, semua yang kamu cita-citakan bisa tercapai, selalu diberikan kesehatan, kebahagiaan yang melimpah, dan makin sayang sama orang-orang sekitar (termasuk aku hehe 🙈).</p>
-            <p>Aku buat website sederhana bertema biru ini khusus buat kamu, semoga bisa bikin kamu senyum hari ini yaa! I love you so much! 💙✨</p>
-          </div>
-        </div>
-
-        <div id="galeri" class="tab-content" style="display: none;">
-          <div class="gallery-grid">
-            <div class="photo-card">
-              <img src="https://picsum.photos/300/300?random=11" alt="Foto 1">
-              <p>Senyum Favorit 🌸</p>
-            </div>
-            <div class="photo-card">
-              <img src="https://picsum.photos/300/300?random=22" alt="Foto 2">
-              <p>Jalan-Jalan 🍦</p>
-            </div>
-            <div class="photo-card">
-              <img src="https://picsum.photos/300/300?random=33" alt="Foto 3">
-              <p>Momen Lucu 🤪</p>
-            </div>
-            <div class="photo-card">
-              <img src="https://picsum.photos/300/300?random=44" alt="Foto 4">
-              <p>Always Together 💙</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="btn-group">
-          <button class="btn-retro" onclick="goBackToWelcome()">⬅️ Back</button>
-          <button class="btn-retro" onclick="openQuestionPopup()">Next ➡️</button>
-        </div>
+      <div id="galeri" class="tab-content" style="display: none;">
+        <h1 class="main-title">Galeri Momen 📸</h1>
+        <p style="text-align: center;">Momen manis kita bersama!</p>
       </div>
 
+      <div class="btn-group">
+        <button class="btn-retro" onclick="openQuestionPopup()">Next ➡️</button>
+      </div>
     </div>
   </div>
 
-  <!-- RETRO QUESTION POPUP -->
+  <!-- POPUP -->
   <div id="popupOverlay" class="popup-overlay">
     <div class="popup-box">
       <div id="questionContent">
@@ -518,47 +388,25 @@
 
   <script>
     const audio = document.getElementById("myAudio");
-    const introVideo = document.getElementById("introVideo");
     const musicBtn = document.getElementById("musicBtn");
 
-    // Fungsi Pengontrol Musik
     function toggleMusic() {
       if (audio.paused) {
         audio.play();
         musicBtn.innerHTML = "⏸️ Pause Music";
-        musicBtn.style.backgroundColor = "#bae6fd";
       } else {
         audio.pause();
         musicBtn.innerHTML = "🎵 Play Music";
-        musicBtn.style.backgroundColor = "#ffffff";
       }
     }
 
-    // Fungsi Saat Tombol Masuk Di-Klik (Membuka Web & Mengaktifkan Suara)
     function closeVideo() {
-      // Sembunyikan Overlay Video Intro
       document.getElementById('videoContainer').style.display = 'none';
-
-      // Putar Lagu Latar Belakang
       audio.play().then(() => {
         musicBtn.innerHTML = "⏸️ Pause Music";
-        musicBtn.style.backgroundColor = "#bae6fd";
       }).catch(err => {
-        console.log("Audio dinyalakan lewat tombol manual");
+        console.log("Audio dinyalakan manual");
       });
-    }
-
-    // Navigasi Halaman
-    function goToMainPage() {
-      document.getElementById('welcomePage').classList.remove('active');
-      document.getElementById('mainPage').classList.add('active');
-      document.getElementById('tabMenuHeader').style.display = 'flex';
-    }
-
-    function goBackToWelcome() {
-      document.getElementById('mainPage').classList.remove('active');
-      document.getElementById('welcomePage').classList.add('active');
-      document.getElementById('tabMenuHeader').style.display = 'none';
     }
 
     function switchTab(tabId, element) {
@@ -594,3 +442,5 @@
 
 </body>
 </html>
+
+    
