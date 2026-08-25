@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+l<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -378,17 +378,18 @@
 </head>
 <body>
 
-  <!-- Video Intro Overlay -->
-  <div id="videoContainer">
+<!-- Video Intro Overlay -->
+<div id="videoContainer">
   <!-- Pakai tag <video> kalau file kamu .mp4 -->
   <video id="introVideo" autoplay muted playsinline onended="closeVideo()">
     <source src="introVideo.mp4" type="video/mp4">
   </video>
-
+  
+  <!-- ATAU pakai tag <img> di bawah ini kalau file kamu formatnya .gif -->
   <!-- <img src="intro.gif" style="max-width: 90%; border-radius: 12px; margin-bottom: 15px;"> -->
 
-  <button class="skip-btn" onclick="closeVideo()"➡️</button>
-  </div>
+  <button class="skip-btn" onclick="closeVideo()">Lanjut ke Web ➡️</button>
+</div>
     
   <!-- Main Browser Window -->
   <div class="browser-window" id="mainWindow">
