@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Eighteen Mutia </title>
+  <title>Happy Eighteen Mutia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
@@ -26,18 +26,13 @@
     }
 
     body {
+      background-color: #e0f2fe;
       font-family: 'Quicksand', sans-serif;
-      background-color: #ffffff;
-      background-image: 
-        linear-gradient(90deg, rgba(186, 230, 253, 0.5) 50%, transparent 50%),
-        linear-gradient(rgba(186, 230, 253, 0.5) 50%, transparent 50%);
-      background-size: 40px 40px;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      padding: 20px 10px;
-      overflow-x: hidden;
+      padding: 20px;
     }
 
     /* Video Overlay Intro */
@@ -56,14 +51,20 @@
     }
 
     #introVideo {
-      max-width: 100%;
-      max-height: 80vh;
+      max-width: 90%;
+      max-height: 75vh;
       border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .video-controls-overlay {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
     }
 
     .skip-btn {
-      margin-top: 15px;
-      padding: 8px 18px;
+      padding: 10px 20px;
       background: #38bdf8;
       color: white;
       border: none;
@@ -71,6 +72,13 @@
       font-weight: bold;
       cursor: pointer;
       font-family: 'Fredoka', sans-serif;
+      box-shadow: 0 4px 0px #0284c7;
+      transition: all 0.2s ease;
+    }
+
+    .skip-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0px #0284c7;
     }
 
     /* Main Window */
@@ -84,11 +92,6 @@
       overflow: hidden;
       animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
-    }
-
-    .browser-window.blur-bg {
-      filter: blur(5px);
-      pointer-events: none;
     }
 
     @keyframes popIn {
@@ -202,11 +205,11 @@
 
     .page-section.active { display: block; }
 
-    /* Character Image Styling */
     .bday-char {
       width: 150px;
       height: auto;
       margin-bottom: 12px;
+      border-radius: 15px;
       animation: floatChar 3s ease-in-out infinite;
     }
 
@@ -294,7 +297,6 @@
       font-family: 'Fredoka', sans-serif;
     }
 
-    /* POPUP STYLES */
     .popup-overlay {
       position: fixed;
       top: 0;
@@ -360,7 +362,6 @@
       transition: all 0.15s ease;
     }
 
-    /* Final Message Dialog */
     #finalMessage {
       display: none;
       font-family: 'Fredoka', sans-serif;
@@ -378,19 +379,18 @@
 </head>
 <body>
 
-<!-- Video Intro Overlay -->
-<div id="videoContainer">
-  <!-- Pakai tag <video> kalau file kamu .mp4 -->
-  <video id="introVideo" autoplay muted playsinline onended="closeVideo()">
-    <source src="introVideo.mp4" type="video/mp4">
-  </video>
-  
-  <!-- ATAU pakai tag <img> di bawah ini kalau file kamu formatnya .gif -->
-  <!-- <img src="intro.gif" style="max-width: 90%; border-radius: 12px; margin-bottom: 15px;"> -->
+  <!-- Video Intro Overlay -->
+  <div id="videoContainer">
+    <video id="introVideo" autoplay muted playsinline onended="closeVideo()">
+      <source src="intro video.mp4" type="video/mp4">
+      Browser kamu tidak mendukung pemutaran video.
+    </video>
+    <div class="video-controls-overlay">
+      <button class="skip-btn" onclick="unmuteVideo()">Putar Suara 🔊</button>
+      <button class="skip-btn" onclick="closeVideo()">Lewati ✌️</button>
+    </div>
+  </div>
 
-  <button class="skip-btn" onclick="closeVideo()">✌️</button>
-</div>
-    
   <!-- Main Browser Window -->
   <div class="browser-window" id="mainWindow">
     
@@ -405,8 +405,8 @@
       </div>
 
       <div id="tabMenuHeader" class="tab-container" style="display: none;">
-        <div class="tab-item active" onclick="switchTab('surat', this)"> love letter</div>
-        <div class="tab-item" onclick="switchTab('galeri', this)"> just us</div>
+        <div class="tab-item active" onclick="switchTab('surat', this)">love letter</div>
+        <div class="tab-item" onclick="switchTab('galeri', this)">just us</div>
       </div>
     </div>
 
@@ -420,22 +420,19 @@
       <!-- PAGE 1: Welcome -->
       <div id="welcomePage" class="page-section active">
         <div class="welcome-box">
-          <!-- Gambar Karakter Ultah Imut -->
-          <img src="https://i.ibb.co/68v8L54/White-Hamster-in-a-birthday-party.jpg" alt="Birthday Character" class="bday-char">
-          <h1 class="main-title">Happy Eighteen Mutia </h1>
-          <p class="welcome-text">next aja anjg, mls ngetik.<br>klik lah</p>
-          <button class="btn-retro" onclick="goToMainPage()">Next ➡️</button>
+          <img src="hamster.jpg" alt="Birthday Character" class="bday-char">
+          <h1 class="main-title">Happy Eighteen Mutia 💖</h1>
+          <p class="welcome-text">next aja anjg, mls ngetik.<br>eh lagunya puter dulu dong</p>
+          <button class="btn-retro" onclick="goToMainPage()">➡️</button>
         </div>
       </div>
 
       <!-- PAGE 2: Main Content (Tabs) -->
       <div id="mainPage" class="page-section">
         
-        <div id="surat" class="tab-content active">
+        <div id="surat" class="tab-content">
           <div class="letter-box">
-
             <p>Hello, happy eighteen Mutia. Hope ur days will getting better every single day. Panjang umur yaa, sehat selalu and jangan lupa jaga kesehatan. Semangat buat TKA nyaa! I know u can do it well. Jangan dengerin kata orang yg terus nanyain tentang masa depan ke kamu, karna masa depan ada di tanganmu dan mereka ga berhak apapun atas masa depanmu. Kalo cape belajar sempetin buat istirahat mut, jangan terus dipaksain. Semoga kamu mendapat yang terbaik buat dirimu di masa depan (i mean ITS). KWKWOWEKKW...Semogaa lancarr TKA nyaa, aku tau kamu bisa. Reach all of ur dreams, and tell me one day. Yea..dunia udah mulai serius buatmu, waktu kita buat ketemu juga bakal makin dikit i guess.. sometimes I wish we're a classmates, so I can see ur face every sunrise. Yahh.. maybe in another life, ya? I'll waiting for u, always. Terima kasih sudah mau menemani waktu luangku selama ini, sungguh kehadiranmu begitu berarti. Aku bener bener ga nyangka bakal sedeket ini sama kamu. Tapi emg dari first meet kita kamu interesting sih dimataku (miss ur gelang kucing). Exactly u r different, aku gatau kenapa??.. tapi itu yg bikin kamu bener bener mencolok diantara yang lain, walau kadang kek kanjut kau anjing. I'll miss our fucking mocking, our unfunny jokes, ur silly smile and ur giggles. WKWWKW maaf kalo aku suka ngeselin yah, but that's the way I show my love for you. See ya...I love you.</p>
-            
           </div>
         </div>
 
@@ -443,7 +440,7 @@
           <div class="gallery-grid">
             <div class="photo-card">
               <img src="https://picsum.photos/300/300?random=11" alt="Foto 1">
-              <p> jjsuhs</p>
+              <p>jjsuhs</p>
             </div>
             <div class="photo-card">
               <img src="https://picsum.photos/300/300?random=22" alt="Foto 2">
@@ -460,10 +457,9 @@
           </div>
         </div>
 
-        <!-- Navigation Buttons inside Main Page -->
         <div class="btn-group">
-          <button class="btn-retro" onclick="goBackToWelcome()">⬅️ Back</button>
-          <button class="btn-retro" onclick="openQuestionPopup()">Next ➡️</button>
+          <button class="btn-retro" onclick="goBackToWelcome()">⬅️</button>
+          <button class="btn-retro" onclick="openQuestionPopup()">➡️</button>
         </div>
       </div>
 
@@ -489,13 +485,26 @@
   </div>
 
   <script>
-    // Video Handler
+    const introVideo = document.getElementById('introVideo');
+
+    // Menghidupkan suara video jika tombol ditekan
+    function unmuteVideo() {
+      if (introVideo) {
+        introVideo.muted = false;
+        introVideo.play();
+      }
+    }
+
+    // Menutup video intro
     function closeVideo() {
       const vidContainer = document.getElementById('videoContainer');
       vidContainer.style.display = 'none';
+      if (introVideo) {
+        introVideo.pause();
+      }
     }
 
-    // Page Navigation
+    // Halaman Navigation
     function goToMainPage() {
       document.getElementById('welcomePage').classList.remove('active');
       document.getElementById('mainPage').classList.add('active');
@@ -522,13 +531,12 @@
     // Popup Logic
     function openQuestionPopup() {
       document.getElementById('popupOverlay').style.display = 'flex';
-      // Posisi awal tombol tidak
       const btnNo = document.getElementById('btnNo');
       btnNo.style.left = '180px';
       btnNo.style.top = '0px';
     }
 
-    // Tombol 'Tidak' Lari
+    // Tombol 'Tidak' yang berlari saat di-hover/diklik
     function moveNoButton() {
       const btnNo = document.getElementById('btnNo');
       const x = Math.floor(Math.random() * 180) - 90;
@@ -536,34 +544,10 @@
       btnNo.style.transform = `translate(${x}px, ${y}px)`;
     }
 
-    // Jawaban 'Iya syg'
     function answerYes() {
       document.getElementById('questionContent').style.display = 'none';
       document.getElementById('finalMessage').style.display = 'block';
     }
-
-<script>
-  // Ambil elemen video dan elemen konten web
-  const introVideo = document.querySelector('video');
-  const videoWrapper = introVideo.parentElement; // Container video
-  const mainContent = document.querySelector('.main-content') || document.body.children[1];
-
-  // 1. Agar video bersuara (diaktifkan saat pengguna pertama kali mengetuk layar)
-  document.addEventListener('click', (✌️) => {
-    introVideo.muted = false;
-  }, { once: true });
-
-  // 2. Fungsi otomatis ketika video SELESAI diputar
-  introVideo.addEventListener('ended', () => {
-    // Sembunyikan layar/container video
-    videoWrapper.style.display = 'none';
-    
-    // Tampilkan konten utama website
-    if (mainContent) {
-      mainContent.style.display = 'block';
-    }
-  });
-</script>
+  </script>
 </body>
 </html>
-  
