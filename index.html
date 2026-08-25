@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Eighteen Mutia </title>
+  <title>Happy Eighteen Mutia 💙</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
@@ -26,13 +27,6 @@
     }
 
     body {
-      <!-- Background Music (Auto / Manual Play) -->
-<audio id="myAudio" loop>
-  <source src="lagu.mp3" type="audio/mp3">
-</audio>
-
-<!-- Tombol Musik Melayang Imut di Pojok Kanan Atas -->
-<button class="music-btn" onclick="toggleMusic()" id="musicBtn">🎵 Play Music</button>
       font-family: 'Quicksand', sans-serif;
       background-color: #ffffff;
       background-image: 
@@ -45,6 +39,30 @@
       min-height: 100vh;
       padding: 20px 10px;
       overflow-x: hidden;
+    }
+
+    /* Tombol Musik Melayang */
+    .music-btn {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background-color: #ffffff;
+      color: #0284c7;
+      border: 3px solid #38bdf8;
+      border-radius: 20px;
+      padding: 8px 16px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.85rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+      transition: all 0.2s ease;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.05);
+      background-color: #bae6fd;
     }
 
     /* Video Overlay Intro */
@@ -63,21 +81,28 @@
     }
 
     #introVideo {
-      max-width: 100%;
-      max-height: 80vh;
+      max-width: 90%;
+      max-height: 70vh;
       border-radius: 12px;
     }
 
-    .skip-btn {
+    .play-start-btn {
       margin-top: 15px;
-      padding: 8px 18px;
+      padding: 12px 24px;
       background: #38bdf8;
       color: white;
-      border: none;
-      border-radius: 20px;
+      border: 3px solid #ffffff;
+      border-radius: 25px;
       font-weight: bold;
+      font-size: 1rem;
       cursor: pointer;
       font-family: 'Fredoka', sans-serif;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .play-start-btn:hover {
+      transform: scale(1.08);
     }
 
     /* Main Window */
@@ -91,11 +116,6 @@
       overflow: hidden;
       animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
-    }
-
-    .browser-window.blur-bg {
-      filter: blur(5px);
-      pointer-events: none;
     }
 
     @keyframes popIn {
@@ -209,11 +229,11 @@
 
     .page-section.active { display: block; }
 
-    /* Character Image Styling */
     .bday-char {
-      width: 150px;
+      width: 140px;
       height: auto;
       margin-bottom: 12px;
+      border-radius: 15px;
       animation: floatChar 3s ease-in-out infinite;
     }
 
@@ -360,14 +380,11 @@
       border-radius: 10px;
     }
 
-    .btn-pop:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #000; }
-
     #btnNo {
       position: absolute;
       transition: all 0.15s ease;
     }
 
-    /* Final Message Dialog */
     #finalMessage {
       display: none;
       font-family: 'Fredoka', sans-serif;
@@ -384,42 +401,23 @@
   </style>
 </head>
 <body>
-  /* Tombol Pengontrol Musik Melayang */
-.music-btn {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  background-color: #ffffff;
-  color: #0284c7;
-  border: 3px solid #38bdf8;
-  border-radius: 20px;
-  padding: 8px 16px;
-  font-family: 'Fredoka', sans-serif;
-  font-size: 0.85rem;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  z-index: 1000;
-  transition: all 0.2s ease;
-}
 
-.music-btn:hover {
-  transform: scale(1.05);
-  background-color: #bae6fd;
-}
+  <!-- Audio Lagu -->
+  <audio id="myAudio" loop>
+    <source src="lagu.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Tombol Musik Melayang -->
+  <button class="music-btn" onclick="toggleMusic()" id="musicBtn">🎵 Play Music</button>
 
   <!-- Video Intro Overlay -->
   <div id="videoContainer">
-    <div id="videoContainer">
-  <!-- Pakai tag <video> kalau file kamu .mp4 -->
-  <video id="introVideo" autoplay muted playsinline onended="closeVideo()">
-    <source src="introVideo.mp4" type="video/mp4">
-  </video>
-  
-  <!-- <img src="intro.gif" style="max-width: 90%; border-radius: 12px; margin-bottom: 15px;"> -->
-
-  <button class="skip-btn" onclick="closeVideo()">Lanjut ke Web ➡️</button>
-    </div>
+    <video id="introVideo" playsinline muted autoplay onended="closeVideo()">
+      <source src="video3.mp4" type="video/mp4">
+    </video>
+    <!-- Tombol ini berfungsi mengaktifkan suara & membuka web -->
+    <button class="play-start-btn" onclick="closeVideo()">🔊 Buka Web & Bunyikan Suara ➡️</button>
+  </div>
 
   <!-- Main Browser Window -->
   <div class="browser-window" id="mainWindow">
@@ -435,14 +433,14 @@
       </div>
 
       <div id="tabMenuHeader" class="tab-container" style="display: none;">
-        <div class="tab-item active" onclick="switchTab('surat', this)"> love letter</div>
-        <div class="tab-item" onclick="switchTab('galeri', this)"> just us</div>
+        <div class="tab-item active" onclick="switchTab('surat', this)">💌 Surat Cinta</div>
+        <div class="tab-item" onclick="switchTab('galeri', this)">📸 Momen Kita</div>
       </div>
     </div>
 
     <div class="search-bar-container">
       <span class="nav-icons">← → ↻</span>
-      <input type="text" class="url-input" value="https://happy-18th-mutia." readonly>
+      <input type="text" class="url-input" value="https://happy-18th-mutia.love 💖" readonly>
     </div>
 
     <div class="window-body">
@@ -450,11 +448,10 @@
       <!-- PAGE 1: Welcome -->
       <div id="welcomePage" class="page-section active">
         <div class="welcome-box">
-          <!-- Gambar Karakter Ultah Imut -->
-          <img src="hamster.jpg" alt="Birthday Character" class="bday-char">
-          <h1 class="main-title">Happy Eighteen Mutia </h1>
-          <p class="welcome-text">next aja anjg, mls ngetik.<br>eh lagunya putrer dulu dong</p>
-          <button class="btn-retro" onclick="goToMainPage()"> ➡️</button>
+          <img src="hamster.jpg" alt="Birthday Character" class="bday-char" onerror="this.src='https://picsum.photos/150/150'">
+          <h1 class="main-title">Happy Eighteen Mutia 💙</h1>
+          <p class="welcome-text">Ada sesuatu spesial yang dibuat khusus buat kamu nih.<br>Yuk klik Next!</p>
+          <button class="btn-retro" onclick="goToMainPage()">Next ➡️</button>
         </div>
       </div>
 
@@ -463,9 +460,11 @@
         
         <div id="surat" class="tab-content active">
           <div class="letter-box">
-
-            <p>Hello, happy eighteen Mutia. Hope ur days will getting better every single day. Panjang umur yaa, sehat selalu and jangan lupa jaga kesehatan. Semangat buat TKA nyaa! I know u can do it well. Jangan dengerin kata orang yg terus nanyain tentang masa depan ke kamu, karna masa depan ada di tanganmu dan mereka ga berhak apapun atas masa depanmu. Kalo cape belajar sempetin buat istirahat mut, jangan terus dipaksain. Semoga kamu mendapat yang terbaik buat dirimu di masa depan (i mean ITS). KWKWOWEKKW...Semogaa lancarr TKA nyaa, aku tau kamu bisa. Reach all of ur dreams, and tell me one day. Yea..dunia udah mulai serius buatmu, waktu kita buat ketemu juga bakal makin dikit i guess.. sometimes I wish we're a classmates, so I can see ur face every sunrise. Yahh.. maybe in another life, ya? I'll waiting for u, always. Terima kasih sudah mau menemani waktu luangku selama ini, sungguh kehadiranmu begitu berarti. Aku bener bener ga nyangka bakal sedeket ini sama kamu. Tapi emg dari first meet kita kamu interesting sih dimataku (miss ur gelang kucing). Exactly u r different, aku gatau kenapa??.. tapi itu yg bikin kamu bener bener mencolok diantara yang lain, walau kadang kek kanjut kau anjing. I'll miss our fucking mocking, our unfunny jokes, ur silly smile and ur giggles. WKWWKW maaf kalo aku suka ngeselin yah, but that's the way I show my love for you. See ya...I love you.</p>
-            
+            <p>Hai Mutia sayang! 💙</p>
+            <p>Selamat ulang tahun yang ke-18 ya! 🎉🎂</p>
+            <p>Di usiamu yang baru ini, aku cuma mau kasih tau kalau kamu itu sosok yang luar biasa banget buat aku. Makasih ya udah selalu bawa keceriaan, senyuman manis, dan hangatnya perhatian di setiap hariku.</p>
+            <p>Semoga di umur 18 tahun ini, semua yang kamu cita-citakan bisa tercapai, selalu diberikan kesehatan, kebahagiaan yang melimpah, dan makin sayang sama orang-orang sekitar (termasuk aku hehe 🙈).</p>
+            <p>Aku buat website sederhana bertema biru ini khusus buat kamu, semoga bisa bikin kamu senyum hari ini yaa! I love you so much! 💙✨</p>
           </div>
         </div>
 
@@ -473,7 +472,7 @@
           <div class="gallery-grid">
             <div class="photo-card">
               <img src="https://picsum.photos/300/300?random=11" alt="Foto 1">
-              <p> jjsuhs</p>
+              <p>Senyum Favorit 🌸</p>
             </div>
             <div class="photo-card">
               <img src="https://picsum.photos/300/300?random=22" alt="Foto 2">
@@ -490,10 +489,9 @@
           </div>
         </div>
 
-        <!-- Navigation Buttons inside Main Page -->
         <div class="btn-group">
-          <button class="btn-retro" onclick="goBackToWelcome()">⬅️ </button>
-          <button class="btn-retro" onclick="openQuestionPopup()"> ➡️</button>
+          <button class="btn-retro" onclick="goBackToWelcome()">⬅️ Back</button>
+          <button class="btn-retro" onclick="openQuestionPopup()">Next ➡️</button>
         </div>
       </div>
 
@@ -512,15 +510,18 @@
       </div>
 
       <div id="finalMessage">
-        <div style="font-size: 3rem; margin-bottom: 10px;">🥰😍</div>
-        <p>i miss u too mutiaaaaaaaa</p>
+        <div style="font-size: 3rem; margin-bottom: 10px;">🥰✨</div>
+        <p>i miss u too mutiaa! 💙</p>
       </div>
     </div>
   </div>
-    <script>
+
+  <script>
     const audio = document.getElementById("myAudio");
+    const introVideo = document.getElementById("introVideo");
     const musicBtn = document.getElementById("musicBtn");
 
+    // Fungsi Pengontrol Musik
     function toggleMusic() {
       if (audio.paused) {
         audio.play();
@@ -533,14 +534,21 @@
       }
     }
 
-  <script>
-    // Video Handler
+    // Fungsi Saat Tombol Masuk Di-Klik (Membuka Web & Mengaktifkan Suara)
     function closeVideo() {
-      const vidContainer = document.getElementById('videoContainer');
-      vidContainer.style.display = 'none';
+      // Sembunyikan Overlay Video Intro
+      document.getElementById('videoContainer').style.display = 'none';
+
+      // Putar Lagu Latar Belakang
+      audio.play().then(() => {
+        musicBtn.innerHTML = "⏸️ Pause Music";
+        musicBtn.style.backgroundColor = "#bae6fd";
+      }).catch(err => {
+        console.log("Audio dinyalakan lewat tombol manual");
+      });
     }
 
-    // Page Navigation
+    // Navigasi Halaman
     function goToMainPage() {
       document.getElementById('welcomePage').classList.remove('active');
       document.getElementById('mainPage').classList.add('active');
@@ -564,16 +572,13 @@
       element.classList.add('active');
     }
 
-    // Popup Logic
     function openQuestionPopup() {
       document.getElementById('popupOverlay').style.display = 'flex';
-      // Posisi awal tombol tidak
       const btnNo = document.getElementById('btnNo');
       btnNo.style.left = '180px';
       btnNo.style.top = '0px';
     }
 
-    // Tombol 'Tidak' Lari
     function moveNoButton() {
       const btnNo = document.getElementById('btnNo');
       const x = Math.floor(Math.random() * 180) - 90;
@@ -581,7 +586,6 @@
       btnNo.style.transform = `translate(${x}px, ${y}px)`;
     }
 
-    // Jawaban 'Iya syg'
     function answerYes() {
       document.getElementById('questionContent').style.display = 'none';
       document.getElementById('finalMessage').style.display = 'block';
@@ -590,4 +594,3 @@
 
 </body>
 </html>
-  
