@@ -339,18 +339,25 @@
       font-family: 'Fredoka', sans-serif;
     }
 
+    /* Pop-up Overlay Animasi Baru */
     .popup-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(6px);
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
       display: none;
       justify-content: center;
       align-items: center;
       z-index: 100;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .popup-overlay.show {
+      opacity: 1;
     }
 
     .popup-box {
@@ -362,12 +369,12 @@
       width: 85%;
       max-width: 380px;
       text-align: center;
-      animation: popUpAnim 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform: scale(0.7);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    @keyframes popUpAnim {
-      from { transform: scale(0.5); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+    .popup-overlay.show .popup-box {
+      transform: scale(1);
     }
 
     .popup-title {
@@ -410,7 +417,12 @@
       font-size: 1.4rem;
       color: #0284c7;
       padding: 10px;
-      animation: popUpAnim 0.4s ease;
+      animation: popAnim 0.4s ease;
+    }
+
+    @keyframes popAnim {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     .cake-img-box {
@@ -501,9 +513,10 @@
       font-size: 1.5rem;
       color: #0284c7;
       padding: 20px 10px;
-      animation: popUpAnim 0.4s ease;
+      animation: popAnim 0.4s ease;
     }
 
+    /* Overlay Hitung Mundur & Teks Hitam */
     #countdownOverlay {
       position: fixed;
       top: 0;
@@ -521,20 +534,24 @@
     .countdown-text {
       font-family: 'Fredoka', sans-serif;
       font-size: 7rem;
-      color: #0284c7;
-      animation: zoomCount 0.8s ease infinite;
+      color: #000000;
+      opacity: 1;
     }
 
-    @keyframes zoomCount {
+    .animate-num {
+      animation: zoomCountOnce 0.8s ease forwards;
+    }
+
+    @keyframes zoomCountOnce {
       0% { transform: scale(0.5); opacity: 0; }
       50% { opacity: 1; }
-      100% { transform: scale(1.3); opacity: 0; }
+      100% { transform: scale(1.2); opacity: 1; }
     }
 
     .thank-you-text {
       font-family: 'Great Vibes', cursive;
       font-size: 4.5rem;
-      color: #0284c7;
+      color: #000000;
       text-align: center;
       padding: 20px;
       opacity: 0;
@@ -546,7 +563,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Animasi Fade Out untuk Tulisan Thank You */
     .fade-out {
       animation: fadeOutSmooth 1.5s ease forwards !important;
     }
@@ -620,7 +636,7 @@
         
         <div id="surat" class="tab-content">
           <div class="letter-box">
-            <p>Hello, happy eighteenth Mutia. Hope ur days will getting better every single day. Panjang umur yaa, sehat selalu and jangan lupa jaga kesehatan. Semangat buat TKA nyaa! I know u can do it well. Jangan dengerin kata orang yg terus nanyain tentang masa depan ke kamu, karna masa depan ada di tanganmu dan mereka ga berhak apapun atas masa depanmu. Kalo cape belajar sempetin buat istirahat mut, jangan terus dipaksain. Semoga kamu mendapat yang terbaik buat dirimu di masa depan (i mean ITS). KWKWOWEKKW...Semogaa lancarr TKA nyaa, aku tau kamu bisa. Reach all of ur dreams, and tell me one day. Yea..dunia udah mulai serius buatmu, waktu kita buat ketemu juga bakal makin dikit i guess.. sometimes I wish we're a classmates, so I can see ur face every sunrise. Yahh.. maybe in another life, ya? I'll waiting for u, always. Terima kasih sudah mau menemani waktu luangku selama ini, sungguh kehadiranmu begitu berarti. Aku bener bener ga nyangka bakal sedeket ini sama kamu. Tapi emg dari first meet kita kamu interesting sih dimataku (miss ur gelang kucing). Exactly u r different, aku gatau kenapa??.. tapi itu yg bikin kamu bener bener mencolok diantara yang lain, walau kadang kek kanjut kau anjing. I'll miss our fucking mocking, our unfunny jokes, ur silly smile and ur giggles. WKWWKW maaf kalo aku suka ngeselin yah, but that's the way I show my love for you. See ya...I love you.</p>
+            <p>Hello, happy eighteenth Mutia. Hope ur days will getting better every single day. Panjang umur yaa, sehat selalu and jangan lupa jaga kesehatan. Semangat buat TKA nyaa! I know u can do it well. Jangan dengerin kata orang yg terus nanyain tentang masa depan ke kamu, karna masa depan ada di tanganmu dan mereka ga berhak apapun atas masa depanmu. Kalo cape belajar sempetin buat istirahat mut, jangan terus dipaksain. Semoga kamu mendapat yang terbaik buat dirimu di masa depan (i mean ITS). KWKWOWEKKW...Semogaa lancarr TKA nyaa, aku tau kamu bisa. Reach all of ur dreams, and tell me one day. Yea..dunia udah mulai serious buatmu, waktu kita buat ketemu juga bakal makin dikit i guess.. sometimes I wish we're a classmates, so I can see ur face every sunrise. Yahh.. maybe in another life, ya? I'll waiting for u, always. Terima kasih sudah mau menemani waktu luangku selama ini, sungguh kehadiranmu begitu berarti. Aku bener bener ga nyangka bakal sedeket ini sama kamu. Tapi emg dari first meet kita kamu interesting sih dimataku (miss ur gelang kucing). Exactly u r different, aku gatau kenapa??.. tapi itu yg bikin kamu bener bener mencolok diantara yang lain, walau kadang kek kanjut kau anjing. I'll miss our fucking mocking, our unfunny jokes, ur silly smile and ur giggles. WKWWKW maaf kalo aku suka ngeselin yah, but that's the way I show my love for you. See ya...I love you.</p>
           </div>
         </div>
 
@@ -765,7 +781,7 @@
 
     function goBackToWelcome() {
       document.getElementById('mainPage').classList.remove('active');
-      document.getElementById('welcomePage').classList.active && document.getElementById('welcomePage').classList.add('active');
+      document.getElementById('welcomePage').classList.add('active');
       document.getElementById('tabMenuHeader').style.display = 'none';
     }
 
@@ -781,7 +797,13 @@
     }
 
     function openQuestionPopup() {
-      document.getElementById('popupOverlay').style.display = 'flex';
+      const popup = document.getElementById('popupOverlay');
+      popup.style.display = 'flex';
+      
+      setTimeout(() => {
+        popup.classList.add('show');
+      }, 10);
+
       const btnNo = document.getElementById('btnNo');
       btnNo.style.left = '180px';
       btnNo.style.top = '0px';
@@ -825,8 +847,13 @@
       document.getElementById('gacoanMessage').style.display = 'block';
 
       setTimeout(() => {
-        document.getElementById('popupOverlay').style.display = 'none';
-        startFinalCountdown();
+        const popup = document.getElementById('popupOverlay');
+        popup.classList.remove('show');
+        
+        setTimeout(() => {
+          popup.style.display = 'none';
+          startFinalCountdown();
+        }, 300);
       }, 3000);
     }
 
@@ -836,24 +863,31 @@
       const thankYouDisplay = document.getElementById('thankYouDisplay');
 
       overlay.style.display = 'flex';
+      countDisplay.style.display = 'block';
+      thankYouDisplay.style.display = 'none';
 
       let count = 3;
+      
       countDisplay.innerText = count;
+      countDisplay.classList.remove('animate-num');
+      void countDisplay.offsetWidth;
+      countDisplay.classList.add('animate-num');
 
       const timer = setInterval(() => {
         count--;
         if (count > 0) {
           countDisplay.innerText = count;
+          countDisplay.classList.remove('animate-num');
+          void countDisplay.offsetWidth;
+          countDisplay.classList.add('animate-num');
         } else {
           clearInterval(timer);
           countDisplay.style.display = 'none';
           thankYouDisplay.style.display = 'block';
 
-          // Tahan teks selama 3 detik, lalu jalankan animasi fade out
           setTimeout(() => {
             thankYouDisplay.classList.add('fade-out');
             
-            // Sembunyikan elemen setelah animasi selesai agar latar belakang menjadi putih kosong sempurna
             setTimeout(() => {
               thankYouDisplay.style.display = 'none';
             }, 1500);
